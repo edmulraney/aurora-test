@@ -8,18 +8,12 @@ require("dotenv").config();
 
 const AURORA_PRIVATE_KEY = process.env.AURORA_PRIVATE_KEY;
 console.log("KEY", AURORA_PRIVATE_KEY);
-task("get-counter", "Returns the current counter for the provided Incrementer")
-  .addParam("incrementerAddress", "Eth address of Incrementer contract")
+task("decMul", "runs decMul")
+  .addParam("deploymentAddress", "Eth address of Liquity math contract")
   .setAction(async (taskArgs) => {
-    const { getCounter } = require("./scripts/utils");
-    await getCounter(hre.ethers.provider, taskArgs.incrementerAddress);
-  });
-
-task("increment-counter", "Increments the counter for the provided Incrementer")
-  .addParam("incrementerAddress", "Eth address of Incrementer contract")
-  .setAction(async (taskArgs) => {
-    const { incrementCounter } = require("./scripts/utils");
-    await incrementCounter(hre.ethers.provider, taskArgs.incrementerAddress);
+    console.log("ADDRESS", taskArgs.deploymentAddress);
+    const { decMul } = require("./scripts/utils");
+    await decMul(taskArgs.deploymentAddress);
   });
 
 module.exports = {
